@@ -1,5 +1,5 @@
 import { generateSurgeShadowSocks2022Password } from "../crypto.js";
-import { getUserInfo } from "../../constants/index.js";
+import { getUserInfo, getUrl } from "../../constants/index.js";
 
 import { generateGeneralContent } from "./constants.js";
 
@@ -223,8 +223,9 @@ FINAL, ${emoji ? "🐠 " : ""}漏网之鱼, dns-failed
   }
 
   generateConfig() {
+    const url = getUrl();
     const proxy = this.generateProxyContent();
-    const general = generateGeneralContent();
+    const general = generateGeneralContent(url);
     const proxyGroup = this.generateProxyGroupContent();
     const rule = this.generateRuleContent();
     return [general, proxy, proxyGroup, rule].filter(Boolean).join("\n");

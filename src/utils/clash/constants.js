@@ -1,5 +1,6 @@
 // GeneralContent
-export const generateGeneralContent = () => `# General
+export const generateGeneralContent = (url) => `#SUBSCRIBED ${url}
+# General
 port: 7890
 socks-port: 7891
 mixed-port: 7892

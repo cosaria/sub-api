@@ -2,6 +2,9 @@ import express from "express";
 import V2BoardClient from "./utils/auth.js";
 import SurgeConfig from "./utils/surge/index.js";
 import ClashConfig from "./utils/clash/index.js";
+
+import { setUrl } from "./constants/index.js";
+
 const app = express();
 const port = 3000;
 
@@ -10,6 +13,8 @@ app.get("/", (req, res) => {
 });
 
 app.get("/sub/:token/:protocol", async (req, res) => {
+  const url = `${req.protocol}://${req.get("host")}${req.originalUrl}`;
+  setUrl(url);
   const [platform, protocol] = req.params.protocol.split(":")[1].split("+");
 
   const client = new V2BoardClient(req.params.token, protocol);
@@ -30,7 +35,7 @@ app.get("/sub/:token/:protocol", async (req, res) => {
     const config = surgeConfig.generateConfig();
     // res.send(`<pre>${config}</pre>`);
 
-    const fileName = "Halo.conf";
+    const fileName = "Halo Cloud.conf";
     res.setHeader("Content-Type", "text/plain");
     res.setHeader("Content-Disposition", `attachment; filename=${fileName}`);
     res.send(config);
@@ -39,7 +44,7 @@ app.get("/sub/:token/:protocol", async (req, res) => {
     const config = clashConfig.generateConfig();
     // res.send(`<pre>${config}</pre>`);
 
-    const fileName = "Halo.yaml";
+    const fileName = "Halo Cloud.yaml";
     res.setHeader("Content-Type", "text/plain");
     res.setHeader("Content-Disposition", `attachment; filename=${fileName}`);
     res.send(config);

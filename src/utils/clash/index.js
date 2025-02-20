@@ -1,5 +1,5 @@
 import { generateSurgeShadowSocks2022Password } from "../crypto.js";
-import { getUserInfo } from "../../constants/index.js";
+import { getUserInfo, getUrl } from "../../constants/index.js";
 
 import { generateGeneralContent } from "./constants.js";
 
@@ -295,8 +295,8 @@ class ClashConfig {
   }
 
   generateConfig() {
-    console.log(this.props, this.protocol);
-    const general = generateGeneralContent();
+    const url = getUrl();
+    const general = generateGeneralContent(url);
     const proxy = this.generateProxyContent();
     const proxyGroup = this.generateProxyGroupContent();
     const ruleProviders = this.generateRuleProvidersContent();

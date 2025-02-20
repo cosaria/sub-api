@@ -1,16 +1,20 @@
 // GeneralContent
-export const generateGeneralContent = () => `[General]
+export const generateGeneralContent = (
+  url
+) => `#!MANAGED-CONFIG ${url} interval=43200 strict=true
+
+[General]
 // > 日志级别
 loglevel = notify
 // > 监听地址
-http-listen = 0.0.0.0:6152
-socks5-listen = 0.0.0.0:6153
+http-listen = 0.0.0.0:6888
+socks5-listen = 0.0.0.0:6889
 // 展示错误页面
 show-error-page-for-reject = true
 // > 允许Wi-Fi访问
 allow-wifi-access = true
-wifi-access-http-port = 6152
-wifi-access-socks5-port = 6153
+wifi-access-http-port = 6888
+wifi-access-socks5-port = 6889
 
 // > All Hybrid 网络并发
 all-hybrid = false
