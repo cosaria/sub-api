@@ -1,6 +1,7 @@
 import express from "express";
 import V2BoardClient from "./utils/auth.js";
 import SurgeConfig from "./utils/surge/index.js";
+import SurfboardConfig from "./utils/surfboard/index.js";
 import ClashConfig from "./utils/clash/index.js";
 
 import { setUrl } from "./constants/index.js";
@@ -33,8 +34,13 @@ app.get("/sub/:token/:protocol", async (req, res) => {
   if (platform === "surge") {
     const surgeConfig = new SurgeConfig(queryParams, protocol, nodes);
     const config = surgeConfig.generateConfig();
-    // res.send(`<pre>${config}</pre>`);
-
+    const fileName = "Halo Cloud.conf";
+    res.setHeader("Content-Type", "text/plain");
+    res.setHeader("Content-Disposition", `attachment; filename=${fileName}`);
+    res.send(config);
+  } else if (platform === "surfboard") {
+    const surfboardConfig = new SurfboardConfig(queryParams, protocol, nodes);
+    const config = surfboardConfig.generateConfig();
     const fileName = "Halo Cloud.conf";
     res.setHeader("Content-Type", "text/plain");
     res.setHeader("Content-Disposition", `attachment; filename=${fileName}`);
@@ -42,14 +48,17 @@ app.get("/sub/:token/:protocol", async (req, res) => {
   } else if (platform === "clash") {
     const clashConfig = new ClashConfig(queryParams, protocol, nodes);
     const config = clashConfig.generateConfig();
-    // res.send(`<pre>${config}</pre>`);
-
     const fileName = "Halo Cloud.yaml";
     res.setHeader("Content-Type", "text/plain");
     res.setHeader("Content-Disposition", `attachment; filename=${fileName}`);
     res.send(config);
   } else {
-    res.send("不支持的平台");
+    const clashConfig = new ClashConfig(queryParams, protocol, nodes);
+    const config = clashConfig.generateConfig();
+    const fileName = "Halo Cloud.yaml";
+    res.setHeader("Content-Type", "text/plain");
+    res.setHeader("Content-Disposition", `attachment; filename=${fileName}`);
+    res.send(config);
   }
 });
 

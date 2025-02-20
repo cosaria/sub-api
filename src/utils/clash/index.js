@@ -60,6 +60,7 @@ class ClashConfig {
         proxyEntries = this.generateVmessProxyContent();
         break;
       default:
+        proxyEntries = this.generateShadowSocksProxyContent();
         break;
     }
 

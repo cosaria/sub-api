@@ -3,7 +3,7 @@ import { getUserInfo, getUrl } from "../../constants/index.js";
 
 import { generateGeneralContent } from "./constants.js";
 
-class SurgeConfig {
+class SurfboardConfig {
   constructor(props, protocol, nodes) {
     this.props = props;
     this.protocol = protocol;
@@ -120,7 +120,7 @@ class SurgeConfig {
 
     const serverNames = this.nodes.map((node) => node.name).join(", ");
     const createAreaNode = (emojiPrefix, name, regexFilter) =>
-      `${emoji ? emojiPrefix : ""}${name} = smart, include-other-group=${
+      `${emoji ? emojiPrefix : ""}${name} = url-test, include-other-group=${
         emoji ? "📡 " : ""
       }我的节点, update-interval=0, no-alert=1, hidden=${
         showNode ? "0" : "1"
@@ -154,7 +154,7 @@ class SurgeConfig {
     }所有节点 = select, ${serverNames}, hidden=1`;
     const autoCheckNode = `${
       emoji ? "🌏 " : ""
-    }自动选择 = smart, include-other-group=${
+    }自动选择 = url-test, include-other-group=${
       emoji ? "📡 " : ""
     }我的节点, update-interval=0, no-alert=1, hidden=${
       showNode ? "0" : "1"
@@ -233,4 +233,4 @@ FINAL, ${emoji ? "🐠 " : ""}漏网之鱼, dns-failed
   }
 }
 
-export default SurgeConfig;
+export default SurfboardConfig;
