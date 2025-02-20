@@ -133,11 +133,6 @@ class SurgeConfig {
           sgNode: createAreaNode("🇸🇬 ", "狮城节点", "狮城"),
           jpNode: createAreaNode("🇯🇵 ", "日本节点", "日本"),
           usNode: createAreaNode("🇺🇲 ", "美国节点", "美国"),
-          globalNode: createAreaNode(
-            "🇺🇳 ",
-            "全球节点",
-            "^((?!香港|台湾|日本|狮城|美国).)*$"
-          ),
         }
       : {};
 

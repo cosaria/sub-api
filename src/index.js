@@ -10,7 +10,7 @@ const app = express();
 const port = 3000;
 
 app.get("/", (req, res) => {
-  res.status(403).send("Forbidden");
+  res.send("Halo Converters");
 });
 
 app.get("/sub/:token/:protocol", async (req, res) => {
@@ -60,10 +60,6 @@ app.get("/sub/:token/:protocol", async (req, res) => {
     res.setHeader("Content-Disposition", `attachment; filename=${fileName}`);
     res.send(config);
   }
-});
-
-app.use((req, res, next) => {
-  res.status(404);
 });
 
 app.listen(port, () => {
